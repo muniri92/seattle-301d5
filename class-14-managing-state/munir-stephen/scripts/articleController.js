@@ -55,13 +55,17 @@
   to a function that takes the paramaters 'ctx' and 'next'.
 
   It then instantiates another function called categoryData that takes the 'articlesByCategory'
-  parameter, and assigns the articlesByCategory content to the ctx.articles. Then preforms the next
-  method on the routes.js page, articlesController.index.
+  parameter, and assigns the articlesByCategory content to the ctx.articles.
 
+  The findWhere method, on our Article object, accepts 3 paramaters: field,
+  value, and callback. This is used to get our category data from the database
+  and is accessed by grabbing the category/data from our articles table.  We are using
+  the context object in order to retrieve the category name from our current url params,
+  allowing us to make the appropriate query.
 
-  */
+  Th categoryData function is then run and then afterward preforms the next method on the
+  routes.js page, articlesController.index. */
 
-  // COMMENT: What does this method do?  What is it's execution path?
   articlesController.loadByCategory = function(ctx, next) {
     var categoryData = function(articlesInCategory) {
       ctx.articles = articlesInCategory;
@@ -71,7 +75,17 @@
     Article.findWhere('category', ctx.params.categoryName, categoryData);
   };
 
-  // COMMENT: What does this method do?  What is it's execution path?
+  /* This method assigns the loadAll method to the articlesController that is then set
+  to a function that takes the paramaters 'ctx' and 'next'.
+
+  It then instantiates another function called categoryData that takes the 'allArticles'
+  parameter, and assigns the Article.all content to the ctx.articles and move to the
+  articleController.index.
+
+  It then see if the Article.all array as thing in it by seeing if it has any length.
+  If it does than it sets Article.all to ctx.articles and then performs the next method
+  on the routes.ja page, articleController.index. Else it fetches the data using the
+  Article.fetchAll method. */
   articlesController.loadAll = function(ctx, next) {
     var articleData = function(allArticles) {
       ctx.articles = Article.all;
