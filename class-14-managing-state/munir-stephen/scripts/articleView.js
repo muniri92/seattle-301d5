@@ -12,7 +12,17 @@
     return template(article);
   };
 
-  // COMMENT: What does this method do?  What is it's execution path?
+
+  /*
+  populateFilters is a method on articleView. It declares two variables,
+  'options' and 'template', and 'template' compiles anything that has the id option-template.
+
+  'options' is equal to a function called Article.allAuthors that returns
+  all the author names. The function takes author as a parameter and then
+  runs it through the array method 'map' and returns a varible that takes the key value pair
+  with val and author. And it only appended if it doesn't have a duplicate.
+  */
+
   articleView.populateFilters = function() {
     var options,
       template = Handlebars.compile($('#option-template').text());
@@ -37,7 +47,14 @@
     });
   };
 
-  // COMMENT: What does this method do?  What is it's execution path?
+  handleFilters method of the articleView object is equal to a function that applies the ".one" method
+  to a jquery object which has a containing function that takes the id of 'filters'. this method will run when there is  any change
+  on the select tag. the function sets the resource equal to the id of the current object and removes
+  the filter for the select id.
+  then the page functon sets the route to the resource value in the option tag.
+  the regex replaces the whitespace characters with '+' signs.
+
+  // DONE: What does this method do?  What is it's execution path?
   articleView.handleFilters = function() {
     $('#filters').one('change', 'select', function() {
       resource = this.id.replace('-filter', '');
@@ -117,7 +134,11 @@
     $('#article-json').val(JSON.stringify(article) + ',');
   };
 
-  // COMMENT: What does this method do?  What is it's execution path?
+  // shows all content with an id of 'articles'. then hides all of its siblings content
+  // then it removes article tags from within the element with the articles id.
+  // the forEach method on articles then appends and renders the articles array items to the recently emptied #articles element.
+
+  // DONE: What does this method do?  What is it's execution path?
   articleView.index = function(articles) {
     $('#articles').show().siblings().hide();
 
@@ -127,7 +148,12 @@
     });
 
     articleView.populateFilters();
-    // COMMENT: What does this method do?  What is it's execution path?
+    // DONE: What does this method do?  What is it's execution path?
+
+    we then populate both filters.
+    the if statement simply determines if there is more than one artile within the section. if there is
+    it then shows the first 2 only and hides the rest.
+
     articleView.handleFilters();
 
     // DONE: Replace setTeasers with just the truncation logic, if needed:
