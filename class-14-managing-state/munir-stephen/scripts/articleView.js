@@ -47,12 +47,14 @@
     });
   };
 
+  /*
   handleFilters method of the articleView object is equal to a function that applies the ".one" method
   to a jquery object which has a containing function that takes the id of 'filters'. this method will run when there is  any change
   on the select tag. the function sets the resource equal to the id of the current object and removes
   the filter for the select id.
   then the page functon sets the route to the resource value in the option tag.
   the regex replaces the whitespace characters with '+' signs.
+  */
 
   // DONE: What does this method do?  What is it's execution path?
   articleView.handleFilters = function() {
